@@ -4,10 +4,7 @@ import com.listofemployee.demo.Model.Employee;
 import com.listofemployee.demo.Model.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +17,12 @@ public class EmployeeController {
     @GetMapping("/employees")
     public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();
+    }
+
+    //create REST API
+    @PostMapping("/employees")
+    public Employee createEmployee(@RequestBody Employee employee) {
+        return  employeeRepository.save(employee);
     }
 
 
