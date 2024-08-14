@@ -1,5 +1,6 @@
 package com.listofemployee.demo.Controller;
 
+import com.listofemployee.demo.Exceptions.ResourceNotFoundExceptions;
 import com.listofemployee.demo.Model.Employee;
 import com.listofemployee.demo.Model.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,16 @@ public class EmployeeController {
     @PostMapping("/employees")
     public Employee createEmployee(@RequestBody Employee employee) {
         return  employeeRepository.save(employee);
+    }
+
+    // get employee by id
+    @GetMapping("employees/{id}")
+    public ResponseEntity<Employee>  getEmployeeById(@PathVariable Long id) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundExceptions("Employee does not exist with id:" + id)
+        );
+        return ResponseEntity.ok(employee);
+
     }
 
 
