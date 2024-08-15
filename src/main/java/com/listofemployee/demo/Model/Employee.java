@@ -24,6 +24,12 @@ public class Employee {
 
     }
 
+    public Employee(Long id, String firstName, String lastName, String emailId) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailId = emailId;
+    }
+
 
     // getter and setter
     public long getId() {
