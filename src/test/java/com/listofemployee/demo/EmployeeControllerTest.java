@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -33,11 +34,11 @@ class EmployeeControllerTest {
 
 	@Test
 	void testGetAllEmployees() throws Exception {
-		// Arrange
+
 		Employee employee = new Employee(1L, "John", "Doe", "john.doe@example.com");
 		when(employeeRepository.findAll()).thenReturn(List.of(employee));
 
-		// Act & Assert
+
 		mockMvc.perform(get("/api/v1/employees"))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.size()").value(1))
@@ -104,5 +105,31 @@ class EmployeeControllerTest {
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(objectMapper.writeValueAsString(updatedEmployee)))
 				.andExpect(status().isNotFound());
+	}
+
+	@Test
+	void testDeleteEmployee() throws Exception {
+		Employee deletedEmployee = new Employee(1L, "Jane", "Doe", "jane.doe@example.com");
+
+		when(employeeRepository.findById(deletedEmployee.getId()))
+				.thenReturn(Optional.of(deletedEmployee));
+		doNothing().when(employeeRepository).deleteById(deletedEmployee.getId());
+
+		mockMvc.perform(delete("/api/v1/employees/{id}", deletedEmployee.getId())
+						.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNoContent());
+	}
+	@Test
+	public void deleteEmployee_notFound() throws Exception {
+		Long employeeId = 1L;
+
+		// Mock the behavior of employeeRepository.findById to throw ResourceNotFoundExceptions
+		when(employeeRepository.findById(employeeId)).thenReturn(Optional.empty());
+
+		// Perform the DELETE request and expect 404 Not Found
+		mockMvc.perform(delete("/api/v1/employees/{id}", employeeId)
+						.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNotFound());
+
 	}
 }
