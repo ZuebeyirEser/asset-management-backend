@@ -1,5 +1,6 @@
-package user;
+package com.listofemployee.demo.user;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,12 +23,19 @@ allowing you to create instances of the class with a fluent and expressive API.*
 each field in your class. Fields marked with @NonNull result in
 null checks on those parameters. */
 @AllArgsConstructor
+@Entity
+@Table(name = "users")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
-
+    @Column(name = "email")
     private String email;
+    @Column(name = "password")
     private String password;
 
 }
