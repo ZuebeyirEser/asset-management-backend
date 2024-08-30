@@ -16,8 +16,11 @@ constructors, and builders, during compile time. The @Builder
 annotation, specifically, generates a builder pattern for a class,
 allowing you to create instances of the class with a fluent and expressive API.*/
 @Builder
-
+// @NoArgsConstructor will generate a constructor with no parameters.
 @NoArgsConstructor
+/*@AllArgsConstructor generates a constructor with 1 parameter for
+each field in your class. Fields marked with @NonNull result in
+null checks on those parameters. */
 @AllArgsConstructor
 public class User {
     private Integer id;
