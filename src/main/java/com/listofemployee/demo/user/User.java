@@ -24,10 +24,13 @@ each field in your class. Fields marked with @NonNull result in
 null checks on those parameters. */
 @AllArgsConstructor
 @Entity
-@Table(name = "users")
+@Table(name = "_user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "user_sequence"
+    )
     private Integer id;
     @Column(name = "first_name")
     private String firstName;
