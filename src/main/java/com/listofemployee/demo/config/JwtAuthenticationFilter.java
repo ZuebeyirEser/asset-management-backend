@@ -17,6 +17,7 @@ import java.io.IOException;
 validation logic is executed only once during the request
 lifecycle.*/
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
+    private final JwtService jwtService;
     @Override
     protected void doFilterInternal(
             @NonNull
@@ -28,10 +29,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         ) throws ServletException, IOException {
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
+        final String userEmail;
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request,response);
             return;
         }
         jwt = authHeader.substring(7);
+        userEmail = jwtService.extractUserEmail(jwt);// to do extract user email from Jwt token;
     }
 }
