@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "employees")
 public class Employee {
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "first_name")
@@ -24,4 +25,8 @@ public class Employee {
     @Column(name = "email_id")
     private String emailId;
 
+    // Many Employees can belong to one User
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 }

@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 /* @Data is a convenient shortcut annotation that bundles the features of
 @ToString, @EqualsAndHashCode, @Getter / @Setter and @RequiredArgsConstructor
@@ -52,6 +53,9 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Employee> employees;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
