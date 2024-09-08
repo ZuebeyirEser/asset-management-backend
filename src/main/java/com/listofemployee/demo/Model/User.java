@@ -36,14 +36,14 @@ null checks on those parameters. */
 public class User implements UserDetails {
     @Id
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
+            strategy = GenerationType.AUTO,
             generator = "user_sequence"
     )
 
     private Integer id;
-    @Column(name = "first_name")
+    @Column(name = "firstname")
     private String firstName;
-    @Column(name = "last_name")
+    @Column(name = "lastname")
     private String lastName;
     @Column(name = "email")
     private String email;

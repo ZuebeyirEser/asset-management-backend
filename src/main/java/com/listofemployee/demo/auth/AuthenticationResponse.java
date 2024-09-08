@@ -1,4 +1,4 @@
-package com.listofemployee.demo.Controller;
+package com.listofemployee.demo.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
