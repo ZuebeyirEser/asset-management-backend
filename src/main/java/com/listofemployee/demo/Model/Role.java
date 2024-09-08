@@ -1,4 +1,4 @@
-package com.listofemployee.demo.user;
+package com.listofemployee.demo.Model;
 
 public enum Role {
     USER,

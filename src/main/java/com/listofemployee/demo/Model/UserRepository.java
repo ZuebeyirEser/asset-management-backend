@@ -1,5 +1,6 @@
-package com.listofemployee.demo.user;
+package com.listofemployee.demo.Model;
 
+import com.listofemployee.demo.Model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

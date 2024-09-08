@@ -1,5 +1,6 @@
-package com.listofemployee.demo.user;
+package com.listofemployee.demo.Model;
 
+import com.listofemployee.demo.Model.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

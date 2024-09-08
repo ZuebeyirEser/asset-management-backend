@@ -31,7 +31,7 @@ public class JwtService {
         final Claims claims = extractAllClaims(token);
         return claimResolver.apply(claims);
     }
-    /*/*extracts a all claim from a JWT */*/
+    /*extracts a all claim from a JWT */
     private Claims extractAllClaims(String token) {
         return Jwts
                 .parserBuilder()
