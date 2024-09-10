@@ -2,7 +2,7 @@ package com.listofemployee.demo.auth;
 
 import com.listofemployee.demo.Model.Role;
 import com.listofemployee.demo.Model.User;
-import com.listofemployee.demo.Model.UserRepository;
+import com.listofemployee.demo.Repository.UserRepository;
 import com.listofemployee.demo.config.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;

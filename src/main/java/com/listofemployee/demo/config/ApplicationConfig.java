@@ -1,6 +1,6 @@
 package com.listofemployee.demo.config;
 
-import com.listofemployee.demo.Model.UserRepository;
+import com.listofemployee.demo.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -2,7 +2,7 @@ package com.listofemployee.demo.Controller;
 
 import com.listofemployee.demo.Exceptions.ResourceNotFoundExceptions;
 import com.listofemployee.demo.Model.Employee;
-import com.listofemployee.demo.Model.EmployeeRepository;
+import com.listofemployee.demo.Repository.EmployeeRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,5 +1,6 @@
-package com.listofemployee.demo.Model;
+package com.listofemployee.demo.Repository;
 
+import com.listofemployee.demo.Model.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
