@@ -3,7 +3,7 @@ package com.listofemployee.demo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.listofemployee.demo.Controller.EmployeeController;
 import com.listofemployee.demo.Model.Employee;
-import com.listofemployee.demo.Model.EmployeeRepository;
+import com.listofemployee.demo.Repository.EmployeeRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
