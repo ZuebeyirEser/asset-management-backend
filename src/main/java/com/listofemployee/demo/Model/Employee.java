@@ -16,7 +16,7 @@ public class Employee {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
@@ -29,10 +29,5 @@ public class Employee {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Employee(long id, String firstName, String lastName, String email) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.emailId = email;
-    }
+
 }
