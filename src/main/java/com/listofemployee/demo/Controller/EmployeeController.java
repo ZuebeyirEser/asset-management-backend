@@ -2,27 +2,38 @@ package com.listofemployee.demo.Controller;
 
 import com.listofemployee.demo.Exceptions.ResourceNotFoundExceptions;
 import com.listofemployee.demo.Model.Employee;
+import com.listofemployee.demo.Model.User;
 import com.listofemployee.demo.Repository.EmployeeRepository;
+import com.listofemployee.demo.Repository.UserRepository;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/")
 public class EmployeeController {
     private final EmployeeRepository employeeRepository;
-
-    public EmployeeController(EmployeeRepository employeeRepository) {
+    private final UserRepository userRepository;
+    public EmployeeController(EmployeeRepository employeeRepository, UserRepository userRepository) {
         this.employeeRepository = employeeRepository;
+        this.userRepository = userRepository;
     }
-
     @GetMapping("/employees")
-    public List<Employee> getAllEmployees() {
-        return employeeRepository.findAll();
+    public ResponseEntity<?> getAllEmployees() {
+        //authenticated user
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        Optional<User> user = Optional.ofNullable(userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundExceptions("User mot found: " + email)));
+        List<Employee> employees = employeeRepository.findByUser(user);
+        return ResponseEntity.ok(employees);
     }
 
     //create REST API

@@ -41,7 +41,6 @@ public class User implements UserDetails {
             strategy = GenerationType.AUTO,
             generator = "user_sequence"
     )
-
     private Integer id;
     @Column(name = "firstname")
     private String firstName;

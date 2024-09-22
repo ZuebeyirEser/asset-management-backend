@@ -1,14 +1,12 @@
 package com.listofemployee.demo.Model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Data
 @Builder
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "employees")
