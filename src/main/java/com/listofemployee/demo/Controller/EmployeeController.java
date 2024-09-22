@@ -39,7 +39,12 @@ public class EmployeeController {
     //create REST API
     @PostMapping("/employees")
     public Employee createEmployee(@RequestBody Employee employee) {
-        return  employeeRepository.save(employee);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        Optional<User> user = Optional.ofNullable(userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundExceptions("User mot found: " + email)));
+        user.ifPresent(employee::setUser);
+        return employeeRepository.save(employee);
     }
 
     // get employee by id
