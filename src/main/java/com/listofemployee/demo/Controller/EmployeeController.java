@@ -41,10 +41,10 @@ public class EmployeeController {
     public Employee createEmployee(@RequestBody Employee employee) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
-        Optional<User> user = Optional.ofNullable(userRepository.findByEmail(email)
-                .orElseThrow(() -> new ResourceNotFoundExceptions("User mot found: " + email)));
-        user.ifPresent(employee::setUser);
-        return employeeRepository.save(employee);
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundExceptions("User mot found: " + email));
+       employee.setUser(user);
+       return employeeRepository.save(employee);
     }
 /*
     // get employee by id
