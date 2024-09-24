@@ -46,7 +46,7 @@ public class EmployeeController {
         user.ifPresent(employee::setUser);
         return employeeRepository.save(employee);
     }
-
+/*
     // get employee by id
     @GetMapping("employees/{id}")
     public ResponseEntity<Employee>  getEmployeeById(@PathVariable Long id) {
@@ -80,6 +80,6 @@ public class EmployeeController {
     }
 
 
-
+*/
 
 }
