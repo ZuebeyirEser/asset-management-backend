@@ -1,5 +1,6 @@
 package com.listofemployee.demo.config;
 
+import com.listofemployee.demo.Exceptions.ResourceNotFoundExceptions;
 import com.listofemployee.demo.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -17,11 +18,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 public class ApplicationConfig {
     private final UserRepository repository;
+
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> repository.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
+
+
     // responsible for fetching UserDetails also enocoding password etc.
     @Bean
     public AuthenticationProvider authenticationProvider() {
