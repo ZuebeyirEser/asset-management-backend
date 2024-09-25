@@ -77,6 +77,18 @@ public class EmployeeController {
         return ResponseEntity.ok(response);
 
     }
+    @DeleteMapping("employees/{id}")
+    public ResponseEntity<Map<String,Boolean>> deleteEmployee(@PathVariable Long id) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundExceptions("Employee does not exist with id: " + id));
+
+        employeeRepository.deleteById(id);
+        Map<String,Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        System.out.println(response);
+        return ResponseEntity.ok(response);
+    }
+
 
 }
 /*
@@ -102,14 +114,7 @@ public class EmployeeController {
     // HTTP 204 No Content status
     @DeleteMapping("employees/{id}")
     public ResponseEntity<Map<String,Boolean>> deleteEmployee(@PathVariable Long id) {
-        Employee employee = employeeRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundExceptions("Employee does not exist with id: " + id));
 
-        employeeRepository.deleteById(id);
-        Map<String,Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        System.out.println(response);
-        return ResponseEntity.ok(response);
     }
 
 
