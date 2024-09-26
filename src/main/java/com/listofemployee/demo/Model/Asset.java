@@ -67,23 +67,5 @@ public class Asset {
     @Column(name = "warranty_date")
     private Date warrantyDate;
 
-    @Column(name = "building")
-    private Date building;
-
-    @Column(name = "room")
-    private String roomNumber;
-
-    @Column(name = "work_group")
-    private String roomNumber;
-
-    @Column(name = "assigned_user_full_name")
-    private String assignedUserFullName;
-
-    @Column(name = "assigned_user_job_title")
-    private String assignedUserTitle;
-
-    @Column(name = "assigned_user_email")
-    private String assignedUserEmail;
-
 
 }
