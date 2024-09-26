@@ -67,5 +67,9 @@ public class Asset {
     @Column(name = "warranty_date")
     private Date warrantyDate;
 
+    // One-to-One relationship with AssignedUser
+    @OneToOne
+    @JoinColumn(name = "assigned_user_id", referencedColumnName = "id")
+    private AssignedUser assignedUser;
 
 }

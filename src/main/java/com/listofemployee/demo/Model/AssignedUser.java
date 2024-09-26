@@ -36,4 +36,8 @@ public class AssignedUser {
     @Column(name = "work_group")
     private String workGroup;
 
+    // One-to-One relationship with Asset
+    @OneToOne(mappedBy = "assignedUser")
+    private Asset asset;
+
 }
