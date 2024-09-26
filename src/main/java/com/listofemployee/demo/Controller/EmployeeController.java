@@ -79,9 +79,6 @@ public class EmployeeController {
     }
     @DeleteMapping("employees/{id}")
     public ResponseEntity<Map<String,Boolean>> deleteEmployee(@PathVariable Long id) {
-        Employee employee = employeeRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundExceptions("Employee does not exist with id: " + id));
-
         employeeRepository.deleteById(id);
         Map<String,Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
@@ -89,33 +86,4 @@ public class EmployeeController {
         return ResponseEntity.ok(response);
     }
 
-
 }
-/*
-    // get employee by id
-    @GetMapping("employees/{id}")
-    public ResponseEntity<Employee>  getEmployeeById(@PathVariable Long id) {
-        Employee employee = employeeRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundExceptions("Employee does not exist with id:" + id)
-        );
-        return ResponseEntity.ok(employee);
-    }
-    // updating the rest api r
-    @PutMapping("/employees/{id}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id,@RequestBody Employee employeeDetails) {
-        Employee employee = employeeRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundExceptions("Employee does not exist with id:" + id));
-        employee.setFirstName(employeeDetails.getFirstName());
-        employee.setLastName(employeeDetails.getLastName());
-        employee.setEmailId(employeeDetails.getEmailId());
-        Employee updatedEmployee = employeeRepository.save(employee);
-        return ResponseEntity.ok(updatedEmployee);
-    }
-    // HTTP 204 No Content status
-    @DeleteMapping("employees/{id}")
-    public ResponseEntity<Map<String,Boolean>> deleteEmployee(@PathVariable Long id) {
-
-    }
-
-
-*/
