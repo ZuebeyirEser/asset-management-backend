@@ -64,6 +64,11 @@ public class Asset {
     @Column(name = "warranty_date")
     private Date warrantyDate;
 
+    // Many Employees can belong to one User
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     // One-to-One relationship with AssignedUser
     @OneToOne
     @JoinColumn(name = "assigned_user_id", referencedColumnName = "id")

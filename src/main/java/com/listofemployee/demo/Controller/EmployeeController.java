@@ -22,7 +22,7 @@ import java.util.Optional;
 public class EmployeeController {
     private final EmployeeRepository employeeRepository;
     private final UserRepository userRepository;
-
+    // dependency injection
     public EmployeeController(EmployeeRepository employeeRepository, UserRepository userRepository) {
         this.employeeRepository = employeeRepository;
         this.userRepository = userRepository;
