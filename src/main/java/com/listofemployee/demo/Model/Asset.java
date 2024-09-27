@@ -50,16 +50,13 @@ public class Asset {
 
     // this shows if OS has admin user or not
     @Column(name = "is_admin_structure_setup")
-    private boolean adminStructure;
+    private boolean isAdminStructureThere;
 
     @Column(name = "ip_address")
     private String ipAddress;
 
     @Column(name = "mac_address")
     private String macAddress;
-
-    @Column(name = "purchase_data")
-    private Date purchaseDate;
 
     @Column(name = "purchase_date")
     private Date purchaseDate;
