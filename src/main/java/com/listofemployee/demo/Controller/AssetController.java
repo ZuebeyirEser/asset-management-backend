@@ -10,9 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -38,5 +36,15 @@ public class AssetController {
                 .orElseThrow(() -> new ResourceNotFoundExceptions("User mot found: " + email)));
         List<Asset> assets = assetRepository.findByUser(user);
         return ResponseEntity.ok(assets);
+    }
+
+    @PostMapping("/employees")
+    public Asset createAsset(@RequestBody Asset asset) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundExceptions("User mot found: " + email));
+        asset.setUser(user);
+        return assetRepository.save(asset);
     }
 }
