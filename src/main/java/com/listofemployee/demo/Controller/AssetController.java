@@ -38,7 +38,7 @@ public class AssetController {
         return ResponseEntity.ok(assets);
     }
 
-    @PostMapping("/employees")
+    @PostMapping("/assets")
     public Asset createAsset(@RequestBody Asset asset) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
