@@ -16,7 +16,8 @@ import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
-@RestController("/api/v2/")
+@RestController
+@RequestMapping("/api/v1/")
 // this is alternative way to inject
 /*
 * Basically instead of construction injection we are using lombok annotation

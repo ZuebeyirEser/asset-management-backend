@@ -50,7 +50,7 @@ public class Asset {
 
     // this shows if OS has admin user or not
     @Column(name = "is_admin_structure_setup")
-    private boolean isAdminStructureThere;
+    private String isAdminStructureThere;
 
     @Column(name = "ip_address")
     private String ipAddress;
@@ -59,10 +59,10 @@ public class Asset {
     private String macAddress;
 
     @Column(name = "purchase_date")
-    private Date purchaseDate;
+    private String purchaseDate;
 
     @Column(name = "warranty_date")
-    private Date warrantyDate;
+    private String warrantyDate;
 
     // Many Employees can belong to one User
     @ManyToOne(fetch = FetchType.LAZY)

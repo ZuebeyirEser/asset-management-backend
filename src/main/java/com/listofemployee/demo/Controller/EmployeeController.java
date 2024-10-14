@@ -1,8 +1,10 @@
 package com.listofemployee.demo.Controller;
 
 import com.listofemployee.demo.Exceptions.ResourceNotFoundExceptions;
+import com.listofemployee.demo.Model.Asset;
 import com.listofemployee.demo.Model.Employee;
 import com.listofemployee.demo.Model.User;
+import com.listofemployee.demo.Repository.AssetRepository;
 import com.listofemployee.demo.Repository.EmployeeRepository;
 import com.listofemployee.demo.Repository.UserRepository;
 import org.springframework.http.HttpStatus;
@@ -23,9 +25,10 @@ public class EmployeeController {
     private final EmployeeRepository employeeRepository;
     private final UserRepository userRepository;
     // dependency injection
-    public EmployeeController(EmployeeRepository employeeRepository, UserRepository userRepository) {
+    public EmployeeController(EmployeeRepository employeeRepository, UserRepository userRepository ) {
         this.employeeRepository = employeeRepository;
         this.userRepository = userRepository;
+
     }
 
     @GetMapping("/employees")
