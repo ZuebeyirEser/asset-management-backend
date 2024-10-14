@@ -13,8 +13,8 @@ Before running the project, ensure you have the following installed on your syst
 
 ### Step 1: Clone the repository
 ```bash
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
+git clone git@github.com:ZuebeyirEser/asset-management-backend.git
+cd asset-management-backend
 ```
 ### Step 2: Set up the MySQL database
 - Ensure MySQL is installed and running on your machine.
