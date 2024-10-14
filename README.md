@@ -1,4 +1,4 @@
-# Project Name: [Your Backend Project Name]
+# Asset Management Backend 
 
 ## Overview
 This project is a Spring Boot REST API using MySQL as the database. The backend is built with Java and Maven as the build tool. It provides RESTful endpoints for [describe the main functionality].
