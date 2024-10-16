@@ -2,7 +2,6 @@ package com.listofemployee.demo.Controller;
 
 import com.listofemployee.demo.Exceptions.ResourceNotFoundExceptions;
 import com.listofemployee.demo.Model.Asset;
-import com.listofemployee.demo.Model.Employee;
 import com.listofemployee.demo.Model.User;
 import com.listofemployee.demo.Repository.AssetRepository;
 import com.listofemployee.demo.Repository.UserRepository;
@@ -47,5 +46,22 @@ public class AssetController {
                 .orElseThrow(() -> new ResourceNotFoundExceptions("User mot found: " + email));
         asset.setUser(user);
         return assetRepository.save(asset);
+    }
+    @GetMapping("/assets/{id}")
+    public ResponseEntity<Asset> getAssetById(@PathVariable Long id) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundExceptions("User not found: " + email));
+
+        Asset asset = assetRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundExceptions("Asset not found with id: " + id));
+
+        // Check if the asset belongs to the authenticated user
+        if (!asset.getUser().equals(user)) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(asset);
     }
 }
