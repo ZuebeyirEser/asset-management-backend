@@ -14,18 +14,24 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * This class is a Spring REST controller that handles CRUD operations for assets.
+ * It uses Lombok's `@RequiredArgsConstructor` annotation for constructor injection.
+ */
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/")
-// this is alternative way to inject
-/*
-* Basically instead of construction injection we are using lombok annotation
-* */
 @RequiredArgsConstructor
 public class AssetController {
     private final AssetRepository assetRepository;
     private final UserRepository userRepository;
 
+
+    /**
+     * Gets all assets for the authenticated user.
+     *
+     * @return a ResponseEntity containing a list of assets or an appropriate error message
+     */
     @GetMapping("/assets")
     public ResponseEntity<?> getAllAssets() {
         //authenticated user
@@ -38,6 +44,12 @@ public class AssetController {
         return ResponseEntity.ok(assets);
     }
 
+    /**
+     * Creates a new asset for the authenticated user.
+     *
+     * @param asset the asset data to be created
+     * @return the created asset
+     */
     @PostMapping("/assets")
     public Asset createAsset(@RequestBody Asset asset) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -47,6 +59,13 @@ public class AssetController {
         asset.setUser(user);
         return assetRepository.save(asset);
     }
+
+    /**
+     * Gets an asset by its ID for the authenticated user.
+     *
+     * @param id the ID of the asset to retrieve
+     * @return a ResponseEntity containing the asset or an appropriate error message
+     */
     @GetMapping("/assets/{id}")
     public ResponseEntity<Asset> getAssetById(@PathVariable Long id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

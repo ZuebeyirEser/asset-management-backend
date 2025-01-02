@@ -17,20 +17,33 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * This class is a Spring REST controller that handles CRUD operations for employees.
+ */
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/")
 public class EmployeeController {
     private final EmployeeRepository employeeRepository;
     private final UserRepository userRepository;
-    // dependency injection
+
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param employeeRepository the employee repository
+     * @param userRepository the user repository
+     */
     public EmployeeController(EmployeeRepository employeeRepository, UserRepository userRepository ) {
         this.employeeRepository = employeeRepository;
         this.userRepository = userRepository;
 
     }
 
+    /**
+     * Gets all employees for the authenticated user.
+     *
+     * @return a ResponseEntity containing a list of employees or an appropriate error message
+     */
     @GetMapping("/employees")
     public ResponseEntity<?> getAllEmployees() {
         //authenticated user
@@ -42,7 +55,12 @@ public class EmployeeController {
         return ResponseEntity.ok(employees);
     }
 
-    //create REST API
+    /**
+     * Creates a new employee for the authenticated user.
+     *
+     * @param employee the employee data to be created
+     * @return the created employee
+     */
     @PostMapping("/employees")
     public Employee createEmployee(@RequestBody Employee employee) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -53,7 +71,13 @@ public class EmployeeController {
         return employeeRepository.save(employee);
     }
 
-
+    /**
+     * Updates an employee for the authenticated user.
+     *
+     * @param id the ID of the employee to update
+     * @param employeeDetails the updated employee data
+     * @return a ResponseEntity containing a success message and the updated employee or an appropriate error message
+     */
     @PutMapping("employees/{id}")
     public ResponseEntity<?>  updateEmployee(@PathVariable Long id, @RequestBody Employee employeeDetails) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

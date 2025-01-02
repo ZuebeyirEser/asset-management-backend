@@ -1,6 +1,5 @@
 package com.listofemployee.demo.Model;
 
-import com.listofemployee.demo.Model.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,26 +11,16 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-/* @Data is a convenient shortcut annotation that bundles the features of
-@ToString, @EqualsAndHashCode, @Getter / @Setter and @RequiredArgsConstructor
-together:*/
+/**
+ * This class represents a user entity in the database and implements the UserDetails interface from Spring Security.
+ * It is annotated with JPA annotations for persistence and Lombok annotations for boilerplate code reduction.
+ */
 @Data
-/*The @Builder annotation is part of Project Lombok, a library that reduces
-boilerplate code in Java. Project Lombok achieves this by
-generating common code constructs, such as getters, setters,
-constructors, and builders, during compile time. The @Builder
-annotation, specifically, generates a builder pattern for a class,
-allowing you to create instances of the class with a fluent and expressive API.*/
 @Builder
-// @NoArgsConstructor will generate a constructor with no parameters.
 @NoArgsConstructor
-/*@AllArgsConstructor generates a constructor with 1 parameter for
-each field in your class. Fields marked with @NonNull result in
-null checks on those parameters. */
 @AllArgsConstructor
 @Entity
 @Table(name = "_user")

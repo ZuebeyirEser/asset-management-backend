@@ -3,6 +3,11 @@ package com.listofemployee.demo.Model;
 import jakarta.persistence.*;
 import lombok.*;
 
+/**
+ * This class represents an Employee entity in the database.
+ * It is annotated with JPA annotations for persistence and Lombok annotations for boilerplate code reduction.
+ */
+
 @Entity
 @Data
 @Builder

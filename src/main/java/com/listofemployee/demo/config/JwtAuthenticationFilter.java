@@ -17,12 +17,24 @@ import java.io.IOException;
 
 @Component
 @RequiredArgsConstructor
-/* Filter runs once per request, ensuring that the JWT
-validation logic is executed only once during the request
-lifecycle.*/
+
+/**
+ * This class is a Spring Security filter that validates JWT tokens and sets the user authentication context.
+ * It extends `OncePerRequestFilter` to ensure that the JWT validation logic is executed only once per request.
+ */
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
+
+    /**
+     * This method performs JWT token validation and sets the user authentication context.
+     *
+     * @param request  HTTP request
+     * @param response HTTP response
+     * @param filterChain filter chain
+     * @throws ServletException if a servlet error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doFilterInternal(
             @NonNull
@@ -32,17 +44,20 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @NonNull
             FilterChain filterChain
         ) throws ServletException, IOException {
+        // Extract JWT token from Authorization header
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
         final String userEmail;
+        // If there is no JWT token or it doesn't start with "Bearer ", skip filter
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request,response);
             return;
         }
+        // Extract user email from the JWT token
         jwt = authHeader.substring(7);
-
         userEmail = jwtService.extractUserEmail(jwt);
-        // if we have userdetails is null and user is not authenticated
+
+        // If user email is extracted and authentication context is not set
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             // we get userDeatils from database
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);

@@ -3,7 +3,10 @@ package com.listofemployee.demo.Model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
+/**
+ * This class represents an assigned user entity in the database.
+ * It is annotated with JPA annotations for persistence and Lombok annotations for boilerplate code reduction.
+ */
 
 @Entity
 @Data
